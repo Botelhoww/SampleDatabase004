@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin\\Release\\net8.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/a26e9e66-31e5-4edc-a426-91058f1850a7/resourceGroups/2netr-sales-order-service-004_group/providers/Microsoft.Web/sites/2netr-sales-order-service-004"
+}

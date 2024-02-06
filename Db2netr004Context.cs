@@ -46,7 +46,12 @@ public partial class Db2netr004Context : DbContext
     public virtual DbSet<VProductModelCatalogDescription> VProductModelCatalogDescriptions { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:SampleDatabaseSecret");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("AZURE_SQL_CONNECTION_STRING");
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
