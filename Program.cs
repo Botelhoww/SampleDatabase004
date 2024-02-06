@@ -25,9 +25,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/salesorder", (Db2netr004Context context) =>
+app.MapGet("/api/GetByIdWithDetails/{id}", async (int id, Db2netr004Context db) =>
 {
-    return context.SalesOrderHeaders.ToList();
+    var result = await db.SalesOrderHeaders
+        .Include(x => x.SalesOrderDetails)
+        .FirstOrDefaultAsync(x => x.SalesOrderId == id);
+
+    if (result == null)
+        return Results.NotFound();
+
+    return Results.Ok(result);
 });
 
 app.Run();
